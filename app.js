@@ -5,7 +5,8 @@ const app = express();
 const nunjucks = require('nunjucks');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-var models = require('./models');
+const models = require('./models');
+const routes = require('./routes');
 
 
 app.use(express.static('public'));
