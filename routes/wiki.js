@@ -1,8 +1,18 @@
 const express = require('express');
-const wikiRouter = express.Router();
+const router = express.Router();
+
+router.get('/', function(req, res, next) {
+  res.redirect('/');
+});
+
+router.post('/', function(req, res, next) {
+  res.send('got to POST /wiki/');
+});
+
+router.get('/add', function(req, res) {
+  res.render('addpage');
+});
 
 
 
-
-
-module.exports = wikiRouter;
+module.exports = router;

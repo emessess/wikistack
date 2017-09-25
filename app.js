@@ -19,6 +19,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true })); // for HTML form submits
 app.use(bodyParser.json()); // would be for AJAX requests
 
+
 models.db.sync({})
   .then(function () {
     app.listen(3000, function () {
@@ -27,6 +28,5 @@ models.db.sync({})
   })
   .catch(console.error);
 
-app.get('/', function(req, res){
-  res.render('index');
-});
+  app.use('/', routes)
+
