@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const db = new Sequelize('postgres://localhost:5432/wikistack');
 
 
-const Page = db.define('page',{
+const Page = db.define('page', {
   title: {
     type: Sequelize.STRING,
     allowNull: false
@@ -21,10 +21,15 @@ const Page = db.define('page',{
   },
   status: {
     type: Sequelize.ENUM('open', 'closed')
-  }, 
+  },
   date: {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW
+  },
+  getterMethods: {
+    route() {
+      return `/wiki/${this.urlTitle}`;
+    }
   }
 });
 
