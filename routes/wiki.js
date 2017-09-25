@@ -9,21 +9,21 @@ router.get('/', function(req, res, next) {
   res.redirect('/');
 });
 
+router.get('/:urltitle', function(req, res, next) {
+  Page.findOne({
+    where: {
+      urlTitle: req.params.urltitle
+    }
+  }).then((foundPage) => res.json(foundPage))
+    .catch(next);
+});
+
 router.post('/', function(req, res, next) {
-  // res.json(req.body);
-
-      // STUDENT ASSIGNMENT:
-      // add definitions for `title` and `content`
-
-      var page = Page.build({
-        title: req.body.title,
-        content: req.body.content
-      });
-      // STUDENT ASSIGNMENT:
-      // make sure we only redirect *after* our save is complete!
-      // note: `.save` returns a promise or it can take a callback.
-      page.save().then(() => {res.json(page)})
-
+  var page = Page.build({
+    title: req.body.title,
+    content: req.body.content
+  });
+  page.save().then(() => res.json(page));
 });
 
 router.get('/add', function(req, res) {
