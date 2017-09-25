@@ -21,7 +21,7 @@ const Page = db.define('page', {
   },
 }, {
   getterMethods: {
-    route() {
+    route: function(){
       return `/wiki/${this.urlTitle}`;
     }
   }
