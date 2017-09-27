@@ -9,17 +9,25 @@ router.get('/', (req, res, next) => {
   res.redirect('/');
 });
 
+router.get('/add', (req, res, next) => {
+  res.render('addpage');
+});
+
+router.get('/:urlTitle', (req, res, next) => {
+  // res.send(`you reached ${req.params.urlTitle}`);
+  Page.findOne({
+    where: {
+      urlTitle: req.params.urlTitle
+    }
+  }).then((page) => res.render('wikipage'))
+    .catch(next);
+});
+
 router.post('/', (req, res, next) => {
   const newPage = Page.build(req.body);
   newPage.save().then(() => res.redirect(newPage.route));
   
 
 });
-
-router.get('/add', (req, res, next) => {
-  res.render('addpage');
-});
-
-
 
 module.exports = router;
