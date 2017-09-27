@@ -17,11 +17,13 @@ const Page = db.define('page', {
     allowNull: false
   },
   status: Sequelize.ENUM('open', 'closed')
+}, {
+  getterMethods: {
+    route: function(title) {
+      return `/wiki/${this.urlTitle}`;
+    }
+  }
 });
-
-Page.route = function() {
-  return `/wiki/${this.urlTitle}`;
-};
 
 Page.hook('beforeValidate', function (page) {
   if (page.title) {
