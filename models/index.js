@@ -24,6 +24,9 @@ const Page = db.define('page', {
     }
   }
 });
+// Page.prototype.route = function () {
+//   return `/wiki/${this.urlTitle}`;
+// };
 
 Page.hook('beforeValidate', function (page) {
   if (page.title) {

@@ -19,7 +19,7 @@ router.get('/:urlTitle', (req, res, next) => {
     where: {
       urlTitle: req.params.urlTitle
     }
-  }).then((page) => res.render('wikipage'))
+  }).then((foundPage) => res.render('wikipage', {page: foundPage}))
     .catch(next);
 });
 
