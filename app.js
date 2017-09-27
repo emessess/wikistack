@@ -5,6 +5,8 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
 
+const userRouter = require('./routes/user');
+const wikiRouter = require('./routes/wiki');
 const models = require('./models');
 
 const app = express();
@@ -19,6 +21,8 @@ app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
 
 app.use(express.static('public'));
+app.use('/wiki', wikiRouter);
+app.use('/user', userRouter);
 
 app.get('/', (req, res, next) => {
   res.render('index');
